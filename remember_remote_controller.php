@@ -85,12 +85,17 @@
 ?>
 <div class="remote_controller_button">
     <form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
-    <input type="submit" value="電源" name="power" class="btn btn--yellow btn--cubic">
-    <input type="submit" value="冷房" name="cooling" class="btn btn--yellow btn--cubic">
-    <input type="submit" value="除湿" name="dehumidification" class="btn btn--yellow btn--cubic">
-    <input type="submit" value="暖房" name="heating" class="btn btn--yellow btn--cubic">
-    <input type="submit" value="温度" name="temperature" class="btn btn--yellow btn--cubic">
-    <input type="submit" value="停止" name="stop" class="btn btn--yellow btn--cubic">
+    <a href="remembering_remote_controller.php?data='power'" class="btn btn--yellow btn--cubic">電源</a>
+
+    <a href="remembering_remote_controller.php?data='cooling'" class="btn btn--yellow btn--cubic">冷房</a>
+
+    <a href="remembering_remote_controller.php?data='dehumidification'" class="btn btn--yellow btn--cubic">除湿</a>
+
+    <a href="remembering_remote_controller.php?data='heating'" class="btn btn--yellow btn--cubic">暖房</a>
+
+    <a href="remembering_remote_controller.php?data='temperature'" class="btn btn--yellow btn--cubic">温度</a>
+
+    <a href="remembering_remote_controller.php?data='stop'" class="btn btn--yellow btn--cubic">停止</a>
     </form>
 </div>
 
