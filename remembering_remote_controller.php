@@ -7,7 +7,12 @@
 </head>
 <body>
 
-<h1>記憶中</h1>
+<h1>記憶完了</h1>
+
+<div class="page_change">
+    <a href="remember_remote_controller.php" class="btn btn--orange">ボタン選択画面に戻る</a>
+</div>
+
 <?php
     $buffer = "none";
 
@@ -104,10 +109,6 @@
     //
 
 ?>
-
-<div class="page_change">
-    <a href="remember_remote_controller.php" class="btn btn--orange">ボタン選択画面に戻る</a>
-</div>
 
 
 <script>

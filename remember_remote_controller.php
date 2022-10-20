@@ -12,19 +12,44 @@
     $buffer = "none";
 
     $data = "none";
+    $db = new SQLite3('./tempet.db', SQLITE3_OPEN_READWRITE);
+
     if(isset($_POST['power'])){
+        $q = 'UPDATE user_info SET power="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "power";
     }else if(isset($_POST['cooling'])){
+        $q = 'UPDATE user_info SET cooling="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "cooling";
     }else if(isset($_POST['dehumidification'])){
+        $q = 'UPDATE user_info SET dehumidification="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "dehumidification";
     }else if(isset($_POST['heating'])){
+        $q = 'UPDATE user_info SET heating="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "heating";
     }else if(isset($_POST['temperature'])){
+        $q = 'UPDATE user_info SET temperature="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "temperature";
     }else if(isset($_POST['stop'])){
+        $q = 'UPDATE user_info SET stop="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
         $data = "stop";
     }
+    $db->close();
+
+    //$db = new SQLite3('./tempet.db');
+    //$stmt = $db->prepare('UPDATE tempet SET "dog"=:dog "cat"=:cat "bird"=:bird "rabbit"=:rabbit WHERE "user_name"=:user_name');
+    //$stmt->bindValue(':dog', $dog, SQLITE3_INTEGER);
+    //$stmt->bindValue(':cat', $cat, SQLITE3_INTEGER);
+    //$stmt->bindValue(':bird', $bird, SQLITE3_INTEGER);
+    //$stmt->bindValue(':rabbit', $rabbit, SQLITE3_INTEGER);
+    //$stmt->bindValue(':user_name', $user_name, SQLITE3_TEXT);
+    //$result = $stmt->execute();
+    //$db->close();
 
     if($data !== "none"){
         $Raspi_state_file = 'Raspi_state.txt';
