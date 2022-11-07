@@ -25,31 +25,43 @@
     $cat = false;
     $bird = false;
     $rabbit = false;
+
     if (isset($_POST['select_pet']) && is_array($_POST['select_pet'])) {
         $select_pet = $_POST['select_pet'];
-    }
-    //var_dump($select_pet);
-    for($i=0; $i<count($select_pet); $i++){
-        if($select_pet[$i] === "dog"){
-            $dog = true;
-        }else if($select_pet[$i] === "cat"){
-            $cat = true;
-        }else if($select_pet[$i] === "bird"){
-            $bird = true;
-        }else if($select_pet[$i] === "rabbit"){
-            $rabbit = true;
+
+
+        $Raspi_selected_pet_file = "Raspi_selected_pet.txt";
+        $fp = fopen($Raspi_selected_pet_file, 'wb');
+
+        if ($fp){
+            for($i = 0; $i < count($select_pet); $i++){
+                if (flock($fp, LOCK_EX)){
+                    if (fwrite($fp, $select_pet[$i]) === FALSE){
+                        print('ファイル書き込みに失敗しました');
+                    }
+                    flock($fp, LOCK_UN);
+                }else{  
+                    print('ファイルロックに失敗しました');
+                }
+            }
+        }else{
+            print('file open error');
+        }
+    
+        fclose($fp);
+
+        for($i=0; $i<count($select_pet); $i++){
+            if($select_pet[$i] === "dog"){
+                $dog = true;
+            }else if($select_pet[$i] === "cat"){
+                $cat = true;
+            }else if($select_pet[$i] === "bird"){
+                $bird = true;
+            }else if($select_pet[$i] === "rabbit"){
+                $rabbit = true;
+            }
         }
     }
-    //$db = new SQLite3('./tempet.db');
-    //$stmt = $db->prepare('UPDATE tempet SET "dog"=:dog "cat"=:cat "bird"=:bird "rabbit"=:rabbit WHERE "user_name"=:user_name');
-    //$stmt->bindValue(':dog', $dog, SQLITE3_INTEGER);
-    //$stmt->bindValue(':cat', $cat, SQLITE3_INTEGER);
-    //$stmt->bindValue(':bird', $bird, SQLITE3_INTEGER);
-    //$stmt->bindValue(':rabbit', $rabbit, SQLITE3_INTEGER);
-    //$stmt->bindValue(':user_name', $user_name, SQLITE3_TEXT);
-    //$result = $stmt->execute();
-    //$db->close();
-
 ?>
 
 <?php
