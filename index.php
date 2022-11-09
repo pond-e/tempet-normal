@@ -1,32 +1,28 @@
-<?php
-
-require_once __DIR__ . '/functions.php';
-$username = require_basic_auth();
-
-header('Content-Type: text/html; charset=UTF-8');
-
-?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<link href="styles/style.css" rel="stylesheet">
-<title>Temペット Home</title>
+    <meta charset="UTF-8">
+    <link href="styles/style.css" rel="stylesheet">
+    <title>Temペット Login</title>
 </head>
+
 <body>
+    <input type="text" name="username"><br>
+    <input type="text" name="password"><br>
+    <button type="button" id="btn">ログイン</button>
 
-<h1>ようこそ,<?=h($username)?>さん</h1>
+    <script>
+        function btnClick(){
+            location.href = `./start.php?username=${username[0].value}&password=${password[0].value}`;
+        }
 
-<a href="./select_pet.php" class="btn btn--orange">リモコン設定</a>
-
-<?php
-    #print_r($_SERVER['PHP_AUTH_USER']);
-    #print("<br>");
-    #print_r($_SERVER['PHP_AUTH_PW']);
-?>
-
-<script>
-</script>
+        const username = document.getElementsByName("username");
+        const password = document.getElementsByName("password");
+        
+        const login_button = document.getElementById('btn');
+        login_button.onclick = btnClick;
+    </script>
 
 </body>
 </html>
