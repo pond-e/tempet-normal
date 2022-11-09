@@ -24,6 +24,34 @@
         print_r($data);
     }
 
+    $db = new SQLite3('./tempet.db', SQLITE3_OPEN_READWRITE);
+    if($data === 'power'){
+        $q = 'UPDATE user_info SET power="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "power";
+    }else if($data === 'cooling'){
+        $q = 'UPDATE user_info SET cooling="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "cooling";
+    }else if($data === 'dehumidification'){
+        $q = 'UPDATE user_info SET dehumidification="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "dehumidification";
+    }else if($data === 'heating'){
+        $q = 'UPDATE user_info SET heating="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "heating";
+    }else if($data === 'temperature'){
+        $q = 'UPDATE user_info SET temperature="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "temperature";
+    }else if($data === 'stop'){
+        $q = 'UPDATE user_info SET stop="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $db->exec($q);
+        $data = "stop";
+    }
+    $db->close();
+
     if($data !== "none"){
         // 記憶開始
         $Raspi_state_file = 'Raspi_state.txt';
