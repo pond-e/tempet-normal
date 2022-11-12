@@ -19,7 +19,7 @@
 
     <a href="remembering_remote_controller.php?data='temperature'" class="btn btn--yellow btn--cubic">温度</a>
 
-    <a href="remembering_remote_controller.php?data='stop'" class="btn btn--yellow btn--cubic">停止</a>
+    <a href="remembering_remote_controller.php?data='stop_button'" class="btn btn--yellow btn--cubic">停止</a>
 </div>
 
 <div class="page_change">

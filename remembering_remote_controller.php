@@ -45,10 +45,10 @@
         $q = 'UPDATE user_info SET temperature="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "temperature";
-    }else if($data === 'stop'){
-        $q = 'UPDATE user_info SET stop="true" WHERE user="admin"';// user名のSQL injectionは無視する
+    }else if($data === 'stop_button'){
+        $q = 'UPDATE user_info SET stop_button="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
-        $data = "stop";
+        $data = "stop_button";
     }
     $db->close();
 
@@ -69,25 +69,7 @@
             print('file open error');
         }
         fclose($fp);
-        $data = "none";
-
-        // 記憶終了
-        $Raspi_state_file = 'Raspi_state.txt';
-        $fp = fopen($Raspi_state_file, 'wb');
-        if ($fp){
-            if (flock($fp, LOCK_EX)){
-                if (fwrite($fp, "stop") === FALSE){
-                    print('ファイル書き込みに失敗しました');
-                }
-                flock($fp, LOCK_UN);
-            }else{  
-                print('ファイルロックに失敗しました');
-            }
-        }else{
-            print('file open error');
-        }
-
-        
+        $data = "none";        
     }
 
     if(isset($_POST['conform'])){
@@ -95,14 +77,10 @@
 
         $fp_read = fopen($Raspi_receive_file, 'rb');    
         if ($fp_read){
-            //print('2<br>');
             if (flock($fp_read, LOCK_SH)){
-                //print('3<br>');
                 while (!feof($fp_read)) {
                     $buffer = fgets($fp_read);
-                    //print($buffer.'<br>');
                 }
-                //print('4<br>');
                 flock($fp_read, LOCK_UN);
             }else{
                 print('ファイルロックに失敗しました');
@@ -128,6 +106,8 @@
             }else{
                 print('file open error');
             }
+        }else if($buffer === "retry"){
+            print('<p>リモコンの記憶に失敗しました。もう一度お試しください</p><br>');
         }
     }
 
