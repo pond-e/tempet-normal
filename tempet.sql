@@ -4,6 +4,7 @@ BEGIN TRANSACTION;
 Create Table user_info(
   user TEXT,
   password TEXT,
+  session TEXT,
   power	TEXT,
   cooling TEXT,
   dehumidification TEXT,
@@ -15,6 +16,7 @@ Create Table user_info(
 Insert into user_info values(
   'admin',
   'admin',
+  'padding',
   'false',
   'false',
   'false',
