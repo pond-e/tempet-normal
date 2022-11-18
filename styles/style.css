@@ -1,3 +1,7 @@
+.btn--parant {
+  text-align: center;
+}
+
 .btn,
 a.btn,
 button.btn {
@@ -31,7 +35,7 @@ a.btn--orange:hover {
   background: #f56500;
 }
 
-a.btn--yellow {
+.btn--yellow, a.btn--yellow {
   color: #000;
   background-color: #fff100;
   border-bottom: 5px solid #ccc100;
@@ -49,6 +53,12 @@ html {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+}
+
+h1,h2,P {
+  max-width: 70ch;
+  margin: auto;
+  text-align: center;
 }
 
 .example2{
@@ -77,6 +87,12 @@ html {
 .page_change{
   display:flex;
 }
+
+/*
+.orangeEdge {
+  text-align: center;
+}
+*/
 
 .orangeEdge a {
   display: inline-block;

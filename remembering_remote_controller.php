@@ -16,12 +16,6 @@ header('Content-Type: text/html; charset=UTF-8');
 <body>
 
 <h1>記憶フェーズ</h1>
-<div class="remote_controller_button">
-    <form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
-    <input type=submit class="btn btn--yellow btn--cubic" value="記憶が完了したか確認する" name="conform">
-    </form>
-</div>
-
 
 <?php
     $buffer = "none";
@@ -29,36 +23,52 @@ header('Content-Type: text/html; charset=UTF-8');
     $data = "none";
     if(isset($_GET['data'])){
         $data = $_GET['data'];
-        print_r($data);
     }
 
     $db = new SQLite3('./tempet.db', SQLITE3_OPEN_READWRITE);
     if($data === 'power'){
+        print("<h2>電源ボタンをTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET power="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "power";
     }else if($data === 'cooling'){
+        print("<h2>冷房ボタンをTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET cooling="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "cooling";
     }else if($data === 'dehumidification'){
+        print("<h2>除湿ボタンをTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET dehumidification="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "dehumidification";
     }else if($data === 'heating'){
+        print("<h2>暖房ボタンをTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET heating="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "heating";
     }else if($data === 'temperature'){
+        print("<h2>温度ボタンを19℃から29℃までTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET temperature="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "temperature";
     }else if($data === 'stop_button'){
+        print("<h2>停止ボタンをTemペットに向けて押してください</h2>");
         $q = 'UPDATE user_info SET stop_button="true" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "stop_button";
     }
     $db->close();
+?>
+
+<div class="btn--parant">
+    <form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+    <input type=submit class="btn btn--yellow" value="記憶が完了したか確認する" name="conform">
+    </form>
+</div>
+
+
+<?php
+    
 
     if($data !== "none"){
         // 記憶開始
@@ -97,7 +107,7 @@ header('Content-Type: text/html; charset=UTF-8');
         fclose($fp_read);
 
         if($buffer === "success"){
-            print('<div class="page_change">
+            print('<div class="btn--parant">
                     <a href="remember_remote_controller.php" class="btn btn--orange">ボタン選択画面に戻る</a>
                     </div>');
             $Raspi_state_file = 'Raspi_receive.txt';

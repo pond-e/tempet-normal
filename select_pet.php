@@ -26,6 +26,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <input type="submit" value="保存" id="save" class="btn btn--orange">
 </form>
 
+<div class="btn--parant">
 <a href="index.php" class="btn btn--orange">Homeへ</a>
 
 <?php
@@ -78,6 +79,7 @@ header('Content-Type: text/html; charset=UTF-8');
         print('<a href="remember_remote_controller.php" class="btn btn--orange">次へ進む</a>');
     }
 ?>
+</div>
 
 <script>
 </script>

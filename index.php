@@ -21,7 +21,7 @@ print("<h1>ようこそ,".$_SESSION['username']."さん</h1>");
 ?>
 
 <?php
-print('<a href="./select_pet.php" class="btn btn--orange">リモコン設定</a>');
+print('<div class="btn--parant"><a href="./select_pet.php" class="btn btn--orange">リモコン設定</a></div>');
 
 $Raspi_bme_file = 'Raspi_bme.txt';
 $fp = fopen($Raspi_bme_file, 'rb');
@@ -41,7 +41,7 @@ fclose($fp);
 print('<h2>現在の室温は'.$buffer.'℃です</h2>');
 ?>
 
-<a href="/logout.php?token=<?=h(generate_token())?>">logout</a>
+<div class="btn--parant"><a href="./logout.php?token=<?=h(generate_token())?>" class="btn btn--orange">logout</a></div>
 
 <script>
 </script>
