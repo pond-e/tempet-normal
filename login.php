@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // ユーザ名をセット
         $_SESSION['username'] = $username;
         // ログイン完了後に / に遷移
-        header('Location: /');
+        header('Location: ./');
         exit;
     }
     // 認証が失敗したとき
