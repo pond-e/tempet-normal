@@ -3,14 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/login.css" rel="stylesheet">
     <title>Temペット Login</title>
 </head>
 
 <body>
-    <input type="text" name="username"><br>
-    <input type="text" name="password"><br>
-    <button type="button" id="btn">ログイン</button>
+    
+<div class="login-page">
+    <div class="form">
+      <form class="login-form">
+        <input type="text" placeholder="username" name="username"/>
+        <input type="password" placeholder="password" name="password"/>
+        <button type="button" id="btn">login</button>
+      </form>
+    </div>
+  </div>
 
     <script>
         function btnClick(){
