@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . '/session_auth.php';
+require_logined_session();
+
+header('Content-Type: text/html; charset=UTF-8');
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

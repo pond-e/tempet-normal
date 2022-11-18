@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . '/session_auth.php';
+require_logined_session();
+
+header('Content-Type: text/html; charset=UTF-8');
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -24,7 +32,7 @@
 
 <div class="page_change">
     <a href="select_pet.php" class="btn btn--orange">ペットの選択へ</a>
-    <a href="start.php" class="btn btn--orange">Homeへ</a>
+    <a href="index.php" class="btn btn--orange">Homeへ</a>
 </div>
 
 
