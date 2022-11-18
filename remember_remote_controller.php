@@ -24,7 +24,7 @@
 
 <div class="page_change">
     <a href="select_pet.php" class="btn btn--orange">ペットの選択へ</a>
-    <a href="index.php" class="btn btn--orange">Homeへ</a>
+    <a href="start.php" class="btn btn--orange">Homeへ</a>
 </div>
 
 
