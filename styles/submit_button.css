@@ -1,0 +1,40 @@
+.submit_button_parent {
+    text-align: left;
+}
+
+.submit_button {
+    display       : inline-block;
+    border-radius : 0.5rem;      /* 角丸       */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding: 1rem 4rem;          /* 余白       */
+    background    : #eb6100;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid #eb6100;    /* 枠の指定 */
+    letter-spacing: 0.1em;
+}
+.submit_button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #eb6100;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+
+/* スマホ用設定------------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+    .submit_button {
+        display       : inline-block;
+        border-radius : 0.5rem;      /* 角丸       */
+        text-align    : center;      /* 文字位置   */
+        cursor        : pointer;     /* カーソル   */
+        padding: 0.7rem 1.8rem;          /* 余白       */
+        background    : #eb6100;     /* 背景色     */
+        color         : #ffffff;     /* 文字色     */
+        line-height   : 1em;         /* 1行の高さ  */
+        transition    : .3s;         /* なめらか変化 */
+        border        : 2px solid #eb6100;    /* 枠の指定 */
+        letter-spacing: 0.1em;
+    }
+}
+/* ---------------------------------------------------------------------------- */

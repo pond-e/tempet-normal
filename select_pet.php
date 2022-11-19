@@ -10,7 +10,12 @@ header('Content-Type: text/html; charset=UTF-8');
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="styles/style.css" rel="stylesheet">
+<link href="styles/button.css" rel="stylesheet">
+<link href="styles/remember_button.css" rel="stylesheet">
+<link href="styles/select_pet_button.css" rel="stylesheet">
+<link href="styles/submit_button.css" rel="stylesheet">
 <title>Temペット ペットの選択</title>
 </head>
 <body>
@@ -21,12 +26,11 @@ header('Content-Type: text/html; charset=UTF-8');
     <input type="checkbox" id="1" name="select_pet[]" value="dog"><label for="1">犬</label>
     <input type="checkbox" id="2" name="select_pet[]" value="cat"><label for="2">猫</label>
     <input type="checkbox" id="3" name="select_pet[]" value="bird"><label for="3">鳥</label>
-    <input type="checkbox" id="4" name="select_pet[]" value="rabbit"><label for="4">うさぎ</label>
+    <input type="checkbox" id="4" name="select_pet[]" value="rabbit"><label for="4">兎</label>
 </div>
-<input type="submit" value="保存" id="save" class="btn btn--orange">
+<div class="submit_button_parent"><input type="submit" value="保存" id="save" class="submit_button"></div>
 </form>
 
-<div class="btn--parant">
 <a href="index.php" class="btn btn--orange">Homeへ</a>
 
 <?php

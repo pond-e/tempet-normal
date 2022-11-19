@@ -1,0 +1,74 @@
+.btn--parant {
+    text-align: center;
+}
+  
+.btn,
+a.btn,
+button.btn {
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    border-radius: 0.5rem;
+}
+  
+.btn--orange,
+a.btn--orange {
+    color: #fff;
+    background-color: #eb6100;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+    color: #fff;
+    background: #f56500;
+}
+  
+.btn--yellow, a.btn--yellow {
+    color: #000;
+    background-color: #fff100;
+    border-bottom: 5px solid #ccc100;
+}
+a.btn--yellow:hover {
+    margin-top: 3px;
+    color: #000;
+    background: #fff20a;
+    border-bottom: 2px solid #ccc100;
+}
+
+/* スマホ用設定------------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+    .btn,
+    a.btn,
+    button.btn {
+        line-height: 120%;
+        position: relative;
+        display: inline-block;
+        padding: 0.7rem 1.8rem;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        color: #ffffff;
+        border-radius: 0.5rem;
+    }
+}
+/* ---------------------------------------------------------------------------- */

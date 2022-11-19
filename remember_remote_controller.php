@@ -10,7 +10,12 @@ header('Content-Type: text/html; charset=UTF-8');
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="styles/style.css" rel="stylesheet">
+<link href="styles/button.css" rel="stylesheet">
+<link href="styles/remember_button.css" rel="stylesheet">
+<link href="styles/select_pet_button.css" rel="stylesheet">
+<link href="styles/submit_button.css" rel="stylesheet">
 <title>Temペット リモコンの記憶</title>
 </head>
 <body>

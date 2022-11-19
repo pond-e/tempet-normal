@@ -1,0 +1,40 @@
+.example2{
+    display: flex;
+}
+.example2 label{
+    display: block;
+    width: 150px;
+    background: #eac3c3;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.example2 input:checked+label{
+    background: #720d0d;
+    color: #FFF;
+}
+.example2 input{
+    display: none;
+}
+
+/* スマホ用設定------------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+    .example2 label{
+        display: block;
+        width: 100px;
+        background: #eac3c3;
+        color: #000;
+        margin: auto;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+}
+/* ---------------------------------------------------------------------------- */
