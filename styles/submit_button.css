@@ -32,7 +32,7 @@
         text-align    : center;      /* 文字位置   */
         font-size: 18pt;
         cursor        : pointer;     /* カーソル   */
-        padding: 0.7rem 1.8rem;          /* 余白       */
+        padding: 0.7rem 1.5rem;          /* 余白       */
         background    : #eb6100;     /* 背景色     */
         color         : #ffffff;     /* 文字色     */
         line-height   : 1em;         /* 1行の高さ  */
