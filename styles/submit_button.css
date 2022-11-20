@@ -7,6 +7,8 @@
     border-radius : 0.5rem;      /* 角丸       */
     text-align    : center;      /* 文字位置   */
     font-size: 18pt;
+    margin-top: 15px;
+    margin-bottom: 15px;
     cursor        : pointer;     /* カーソル   */
     padding: 1rem 4rem;          /* 余白       */
     background    : #eb6100;     /* 背景色     */
