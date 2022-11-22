@@ -115,7 +115,7 @@ header('Content-Type: text/html; charset=UTF-8');
             print('<div class="btn--parant">
                     <a href="remember_remote_controller.php" class="btn btn--orange">ボタン選択画面に戻る</a>
                     </div>');
-            $Raspi_state_file = 'Raspi_receive.txt';
+            $Raspi_state_file = 'Raspi_state.txt';
             $fp = fopen($Raspi_state_file, 'wb');
             if ($fp){
                 if (flock($fp, LOCK_EX)){
@@ -129,6 +129,22 @@ header('Content-Type: text/html; charset=UTF-8');
             }else{
                 print('file open error');
             }
+
+            $Raspi_receive_file = 'Raspi_receive.txt';
+            $fp = fopen($Raspi_receive_file, 'wb');
+            if ($fp){
+                if (flock($fp, LOCK_EX)){
+                    if (fwrite($fp, "none") === FALSE){
+                        print('ファイル書き込みに失敗しました');
+                    }
+                    flock($fp, LOCK_UN);
+                }else{  
+                    print('ファイルロックに失敗しました');
+                }
+            }else{
+                print('file open error');
+            }
+
         }else if($buffer === "retry"){
             print('<p>リモコンの記憶に失敗しました。もう一度お試しください</p><br>');
         }
