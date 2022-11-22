@@ -1,11 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 html {
   max-width: 70ch;
   padding: 3em 1em;
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
-  font-family: "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
-	-webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1,h2,P {

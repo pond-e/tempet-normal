@@ -55,7 +55,9 @@ a.btn--yellow:hover {
         line-height: 120%;
         position: relative;
         display: inline-block;
-        padding: 0.7rem 1.5rem;
+        padding: 0.7rem 0.7rem;
+        margin-top: 15px;
+        margin-bottom: 15px;
         cursor: pointer;
         -webkit-user-select: none;
         -moz-user-select: none;
