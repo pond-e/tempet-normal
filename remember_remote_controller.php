@@ -37,9 +37,33 @@ header('Content-Type: text/html; charset=UTF-8');
 
 <div class="btn--parant">
     <a href="select_pet.php" class="btn btn--orange">ペットの選択へ</a>
-    <a href="index.php" class="btn btn--orange">Homeへ</a>
+    <form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+    <input type=submit class="submit_button" value="Homeへ" name="Home">
+    </form>
 </div>
 
+<?php
+    if(isset($_POST['Home'])){
+        $Raspi_state_file = 'Raspi_state.txt';
+        $fp = fopen($Raspi_state_file, 'wb');
+        if ($fp){
+            if (flock($fp, LOCK_EX)){
+                if (fwrite($fp, 'active') === FALSE){
+                    print('ファイル書き込みに失敗しました');
+                }
+                flock($fp, LOCK_UN);
+            }else{  
+                print('ファイルロックに失敗しました');
+            }
+        }else{
+            print('file open error');
+        }
+        fclose($fp);
+
+        header('Location: ./');
+        exit;
+    }
+?>
 
 <script>
 </script>
