@@ -6,6 +6,8 @@
  */
 function require_unlogined_session()
 {
+    ini_set("session.cookie_secure", 1);
+    ini_set("session.cookie_path", "/tempet/"); //localでテストをするときは消す
     // セッション開始
     @session_start();
     // ログインしていれば呼び出し元に戻る
@@ -15,6 +17,8 @@ function require_unlogined_session()
 }
 function require_logined_session()
 {
+    ini_set("session.cookie_secure", 1);
+    ini_set("session.cookie_path", "/tempet/"); //localでテストをするときは消す
     // セッション開始
     @session_start();
     // ログインしていなければ /login.php に遷移
