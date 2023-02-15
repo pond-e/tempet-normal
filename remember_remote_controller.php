@@ -44,21 +44,9 @@ header('Content-Type: text/html; charset=UTF-8');
 
 <?php
     if(isset($_POST['Home'])){
-        $Raspi_state_file = 'Raspi_state.txt';
-        $fp = fopen($Raspi_state_file, 'wb');
-        if ($fp){
-            if (flock($fp, LOCK_EX)){
-                if (fwrite($fp, 'active') === FALSE){
-                    print('ファイル書き込みに失敗しました');
-                }
-                flock($fp, LOCK_UN);
-            }else{  
-                print('ファイルロックに失敗しました');
-            }
-        }else{
-            print('file open error');
-        }
-        fclose($fp);
+        $db = new SQLite3('./tempet.db');
+        $db->exec('UPDATE user_info SET state="active"');
+        $db->close();
 
         header('Location: ./');
         exit;

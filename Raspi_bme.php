@@ -4,24 +4,11 @@
         $data = $_POST['data'];
     }
     if($data !== "none"){
-        $Raspi_state_file = 'Raspi_bme.txt';
-
-        $fp = fopen($Raspi_state_file, 'wb');
-
-        if ($fp){
-            if (flock($fp, LOCK_EX)){
-                if (fwrite($fp, $data) === FALSE){
-                    print('ファイル書き込みに失敗しました');
-                }
-                flock($fp, LOCK_UN);
-            }else{  
-                print('ファイルロックに失敗しました');
-            }
-        }else{
-            print('file open error');
-        }
-
-        fclose($fp);
+        $db = new SQLite3('./tempet.db');
+        $stmt = $db->prepare('UPDATE user_info SET temperature=:data');
+        $stmt->bindValue(':data', $data, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $db->close();
         $data = "none";
     }
 ?>

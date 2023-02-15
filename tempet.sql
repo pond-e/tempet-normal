@@ -4,25 +4,19 @@ BEGIN TRANSACTION;
 Create Table user_info(
   user TEXT,
   password TEXT,
-  session TEXT,
-  power	TEXT,
-  cooling TEXT,
-  dehumidification TEXT,
-  temperature TEXT,
-  heating TEXT,
-  stop_button TEXT
+  selected_pet TEXT,
+  receive	TEXT,
+  state TEXT,
+  temperature TEXT
 );
 
 Insert into user_info values(
   'admin',
   'admin',
-  'padding',
-  'false',
-  'false',
-  'false',
-  'false',
-  'false',
-  'false'
+  'dogcatbird',
+  'none',
+  'stop',
+  '19.0'
 );
 
 COMMIT;
