@@ -33,32 +33,32 @@ header('Content-Type: text/html; charset=UTF-8');
     $db = new SQLite3('./tempet.db', SQLITE3_OPEN_READWRITE);
     if($data === 'power'){
         print("<h2>電源ボタンをTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET power="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="power" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "power";
     }else if($data === 'cooling'){
         print("<h2>冷房ボタンをTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET cooling="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="cooling" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "cooling";
     }else if($data === 'dehumidification'){
         print("<h2>除湿ボタンをTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET dehumidification="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="dehumidification" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "dehumidification";
     }else if($data === 'heating'){
         print("<h2>暖房ボタンをTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET heating="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="heating" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "heating";
     }else if($data === 'temperature'){
         print("<h2>温度ボタンを19℃から29℃までTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET temperature="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="temperature" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "temperature";
     }else if($data === 'stop_button'){
         print("<h2>停止ボタンをTemペットに向けて押してください</h2>");
-        $q = 'UPDATE user_info SET stop_button="true" WHERE user="admin"';// user名のSQL injectionは無視する
+        $q = 'UPDATE user_info SET state="stop_button" WHERE user="admin"';// user名のSQL injectionは無視する
         $db->exec($q);
         $data = "stop_button";
     }
@@ -73,77 +73,25 @@ header('Content-Type: text/html; charset=UTF-8');
 
 
 <?php
-    
-
-    if($data !== "none"){
-        // 記憶開始
-        $Raspi_state_file = 'Raspi_state.txt';
-        $fp = fopen($Raspi_state_file, 'wb');
-        if ($fp){
-            if (flock($fp, LOCK_EX)){
-                if (fwrite($fp, $data) === FALSE){
-                    print('ファイル書き込みに失敗しました');
-                }
-                flock($fp, LOCK_UN);
-            }else{  
-                print('ファイルロックに失敗しました');
-            }
-        }else{
-            print('file open error');
-        }
-        fclose($fp);
-        $data = "none";        
-    }
-
     if(isset($_POST['conform'])){
-        $Raspi_receive_file = 'Raspi_receive.txt';
-
-        $fp_read = fopen($Raspi_receive_file, 'rb');    
-        if ($fp_read){
-            if (flock($fp_read, LOCK_SH)){
-                while (!feof($fp_read)) {
-                    $buffer = fgets($fp_read);
-                }
-                flock($fp_read, LOCK_UN);
-            }else{
-                print('ファイルロックに失敗しました');
-            }
+        $db  = new SQLite3('./tempet.db');
+        $results = $db->query('SELECT receive FROM user_info');
+        while ($row = $results->fetchArray()) {
+            $buffer = $row[0];
         }
-        fclose($fp_read);
+        $db->close();
 
         if($buffer === "success"){
             print('<div class="btn--parant">
                     <a href="remember_remote_controller.php" class="btn btn--orange">ボタン選択画面に戻る</a>
                     </div>');
-            $Raspi_state_file = 'Raspi_state.txt';
-            $fp = fopen($Raspi_state_file, 'wb');
-            if ($fp){
-                if (flock($fp, LOCK_EX)){
-                    if (fwrite($fp, "none") === FALSE){
-                        print('ファイル書き込みに失敗しました');
-                    }
-                    flock($fp, LOCK_UN);
-                }else{  
-                    print('ファイルロックに失敗しました');
-                }
-            }else{
-                print('file open error');
-            }
+            $db = new SQLite3('./tempet.db');
+            $db->exec('UPDATE user_info SET state="none"');
+            $db->close();
 
-            $Raspi_receive_file = 'Raspi_receive.txt';
-            $fp = fopen($Raspi_receive_file, 'wb');
-            if ($fp){
-                if (flock($fp, LOCK_EX)){
-                    if (fwrite($fp, "none") === FALSE){
-                        print('ファイル書き込みに失敗しました');
-                    }
-                    flock($fp, LOCK_UN);
-                }else{  
-                    print('ファイルロックに失敗しました');
-                }
-            }else{
-                print('file open error');
-            }
+            $db = new SQLite3('./tempet.db');
+            $db->exec('UPDATE user_info SET receive="none"');
+            $db->close();
 
         }else if($buffer === "retry"){
             print('<p>リモコンの記憶に失敗しました。もう一度お試しください</p><br>');

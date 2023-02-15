@@ -42,26 +42,16 @@ header('Content-Type: text/html; charset=UTF-8');
     if (isset($_POST['select_pet']) && is_array($_POST['select_pet'])) {
         $select_pet = $_POST['select_pet'];
 
-
-        $Raspi_selected_pet_file = "Raspi_selected_pet.txt";
-        $fp = fopen($Raspi_selected_pet_file, 'wb');
-
-        if ($fp){
-            for($i = 0; $i < count($select_pet); $i++){
-                if (flock($fp, LOCK_EX)){
-                    if (fwrite($fp, $select_pet[$i]) === FALSE){
-                        print('ファイル書き込みに失敗しました');
-                    }
-                    flock($fp, LOCK_UN);
-                }else{  
-                    print('ファイルロックに失敗しました');
-                }
-            }
-        }else{
-            print('file open error');
+        $data = "";
+        for($i = 0; $i < count($select_pet); $i++){
+            $data .= $select_pet[$i];
         }
-    
-        fclose($fp);
+
+        $db = new SQLite3('./tempet.db');
+        $stmt = $db->prepare('UPDATE user_info SET selected_pet=:data');
+        $stmt->bindValue(':data', $data, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $db->close();
 
         for($i=0; $i<count($select_pet); $i++){
             if($select_pet[$i] === "dog"){

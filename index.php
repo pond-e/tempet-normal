@@ -28,20 +28,12 @@ print("<h1>ようこそ,".$_SESSION['username']."さん</h1>");
 <?php
 print('<div class="btn--parant"><a href="./select_pet.php" class="btn btn--orange">リモコン設定</a></div>');
 
-$Raspi_bme_file = 'Raspi_bme.txt';
-$fp = fopen($Raspi_bme_file, 'rb');
-if ($fp){
-    if (flock($fp, LOCK_SH)){
-        while (!feof($fp)) {
-            $buffer = fgets($fp);
-        }
-
-        flock($fp, LOCK_UN);
-    }else{
-        print('ファイルロックに失敗しました');
-    }
+$db  = new SQLite3('./tempet.db');
+$results = $db->query('SELECT temperature FROM user_info');
+while ($row = $results->fetchArray()) {
+    $buffer = $row[0];
 }
-fclose($fp);
+$db->close();
 
 print('<h2>現在の室温は'.$buffer.'℃です</h2>');
 ?>
